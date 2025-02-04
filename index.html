@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Noah Kim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Remove default link styles for project cards */
+    .card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      background: white;
+      padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Noah Kim</h1>
+    <p>Finance Analyst | Data Enthusiast</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Showcasing my projects and skills</p>
+  </section>
+
+  <div class="container" id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>Hello! I'm a finance analyst and data enthusiast passionate about turing data into actionable insights.
+      I specialize in data analysis, financial modeling, and problem-solving using tools like Excel, Python, and SQL.</p>
+  </div>
+
+  <div class="container" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="grid">
+      <a href="project1.html" class="card">
+        <h3>Bouldering Route Recommendation System</h3>
+        <p>Using natural language processing and cosine similarity to drive recommendations 
+          for your next bouldering trip to Joshua Tree National Park</p>
+
+      </a>
+      <a href="project2.html" class="card">
+        <h3>Spotify Tableau Dashboard</h3>
+        <p>Take a look at my past listening history and habits on Spotify with an interactive dashboard.</p>
+      </a>
+      <a href="project3.html" class="card">
+        <h3>Writeaway</h3>
+        <p>Have writers block? Just Writeaway! A web application aimed to fight writers block using writing drills.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="container" id="contact">
+    <h2 class="section-title">Connect With Me</h2>
+    <p>Email: <a href="mailto:noah.kim127@gmail.com">noah.kim127@gmail.com</a>.</p>
+    <p>Linkedin: <a href="https://www.linkedin.com/in/noahskim/">https://www.linkedin.com/in/noahskim/</a>.</p>
+    <p>GitHub: <a href="https://github.com/noahkims">https://github.com/noahkims</a>.</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
