@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Showcase Template</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        text-align: center;
+      }
+      
+      h2 {
+        text-align: center;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .content img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+
+      .content p {
+        margin: 20px 0;
+        font-size: 1.1rem;
+      }
+
+      .content pre {
+        background-color: #272822;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9rem;
+      }
+
+      .content a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .content a:hover {
+        color: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+        <h1>Noah Kim</h1>
+        <p>Finance Analyst | Data Enthusiast</p>
+      </header>
+    
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+    <main>
+        <h1>Joshua Tree Bouldering Route Recommendation System</h1>
+
+      <div class="content">
+        <p>
+          Joshua Tree National Park is a popular bouldering and sport climbing spot in Southern California,
+          but deciding which routes to try may be difficult even for the seasoned climber. 
+        </p>
+        <p>The Joshua Tree Bouldering guidebook is a great catalog of the updated routes you can find, 
+            but manually searching may be tiring. Mountain Project is another popular database of routes 
+            supported by the community, and while it provides filters such as popularity and grade level, 
+            it may be hard to choose which routes you'd enjoy. 
+        </p>
+        <p>
+          This recommendation system is aimed to provide a solution, recommending routes by finding those 
+          with similar descriptions!
+        </p>
+        <figure>
+            <img
+                src="images/jtreebackground.jpg"
+                alt="Intro Background"
+                class="resized-background-image"
+            />
+            <figcaption>
+                Photo from <a href="https://www.nps.gov/jotr/planyourvisit/stargazing.htm">National Park Service</a>
+            </figcaption>
+          <style>
+              .resized-background-image {   
+                  width: 100%;
+                  height: auto;
+              }
+          </style>
+        </figure>
+            <h2>Introducing the Data</h2>
+        <p>
+          The data used in this project was sourced from Mountain Project, as the site allows us to download a csv which contains 1000 routes from Joshua Tree Boulder. Let's take a look.
+        </p>
+        <img src="images/routes_head.jpg" alt="Initial Data"/>
+        <p>
+            Conveniently, the routes-finder csv file provides links to each route, which we will use to extract the descriptions from using webscraping.
+        </p>
+        <p>
+            Below is an example page of a route.
+        </p>
+        <img src="images/white_rastafarian.jpg"/>
+        <p>
+            Using Python's BeautifulSoup library, we scrape the descriptions from each route.
+        </p>
+        <img src="images/web-scraping.jpg"/>
+        <p>
+            After some cleaning and preprocessing, we're left with a broken down form of the descriptions, exluding things like stop words.
+        </p>
+        <img src="images/routes_only_descriptions.jpg"/>
+
+        <h2>Creating Our Model</h2>
+
+        <p>
+            I intend on using Cosine Similarity from the Scikit-learn Library in Python to aid us with creating similarity matrices.
+        </p>
+
+        <p>
+            Our first method to prepare our descriptions is by using Bag of Words to organize our descriptions, and then applying cosine similarity between each of the bags.
+
+        </p>
+        <img src="images/bow_and_pairwise.jpg"/>
+        <p>
+            This similarity matrix outputs values between 0 and 1 which indicates how "similar" each bag of word is to another. 
+        </p>
+
+        <p>
+            Our other method to prepare our descriptions is by using TF-IDF, or Term Frequency - Inverse Document Frequency, 
+            which vectorizes the words while considering their frequency to change the weight of each word in the document. 
+            This is important, as we noticed that some of our descriptions were quite short, meaning that it would be given as a recommendation
+            solely because most of the words from the short descrption match with words on other descriptions.
+        </p>
+
+        <p>
+            Here is our TF-IDF implementation.
+        </p>
+        <img src="images/tf-idf_implementation.jpg"/>
+          
+        <h2>Results</h2>
+        <p>
+            After creating each similarity matrix and running a function that identifies the 5 most similar descriptions for each route, I compiled the data into a dataframe 
+            that displays recommendations for each route, seperated by the method used to create the similarity matrix. 
+            I also created an "over" column to see if the systems would provide similar recommendations.
+        </p>
+        <img src="images/results.jpg"/>
+
+        <h2>Conclusion</h2>
+        <p>
+            While we have created recommendations, it is difficult to identify how "good" these recommendations are without an outside opinion, as recommendations are generally subjective.
+            I personally took a look at a few route recommendations and visited each page on Mountain Project, and found that yes, some routes that are suggested are indeed similar 
+            and may have similar features or styles of climbing, but other times they could be quite different. 
+        </p>
+
+        <p>
+            However, I think that the recommendations would probably fair better, or simply be more efficient in finding routes that one might want to try versus flipping through the guidebook
+            or scrolling through Mountain Project. 
+        </p>
+
+        <p>
+            In the end, nothing beats experience and word of mouth, but this system could prove to be helpful to guiding you toward exciting routes.
+        </p>
+
+        <p>Thank you for reading! To view the full project, visit the
+            <a href="https://github.com/noahkims/Bouldering-Route-Recommendation-System/tree/main">project's GitHub repository</a>.
+        </p>
+      </div>
+
+      
+    </main>
+    <footer>
+        <p>&copy; 2025 Noah Kim. All Rights Reserved.</p>
+      </footer>
+  </body>
+</html>
